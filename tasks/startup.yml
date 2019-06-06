@@ -6,6 +6,12 @@
     name: "{{ exist_servicename }}"
     enabled: yes
     state: restarted
+  when: "exist_install_method != 'tomcat'"
+
+- name: "Ensure tomcat is running and exist is loaded"
+  systemd:
+    name: "tomcat"
+    state: restarted
     #daemon-reload: true
 
 # we need to wait until eXist becomes ready.  starting eXist from the
@@ -54,6 +60,7 @@
     dest: "{{ exist_path }}/users-and-groups.xql"
     owner: root
     mode: 0600
+  when: "exist_userpass_map is defined"
 
 - name: Run post-install/hardening (exec users-and-groups.xql)
   shell: "bin/client.sh -u admin -P '{{ exist_adminpass[inventory_hostname] }}' -p {{ exist_http_port }} -F users-and-groups.xql -ouri=xmldb:exist://localhost:{{ exist_http_port }}/exist/xmlrpc"

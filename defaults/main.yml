@@ -19,12 +19,15 @@ exist_install_method: source
 # git settings (for exist_install_method == "source")
 exist_repo: https://github.com/eXist-db/exist.git
 exist_repo_version: develop-4.x.x
-exist_repo_refspec: origin
+exist_repo_refspec: null
 exist_repo_update: yes
 exist_repo_force: yes
 
 # archive filename (for exist_install_method == "remote_archive" or "local_archive")
 exist_archive: "eXist-4.2.0-201806071027.tar.gz"
+
+# (for exist_install_method == "tomcat" ))
+exist_version: 4.7.0
 
 # archive download base URI (for exist_install_method == "remote_archive")
 exist_baseurl: "http://dl.example.com/files/"
@@ -114,6 +117,8 @@ exist_monex_enable: no
 
 # for CentOS 7, Amazon Linux
 exist_redhat_extra_packages:
+  - ant
+  - git
   # to handle .bz2 archives, not installed by default
   - bzip2
   # for Ansible synchronize

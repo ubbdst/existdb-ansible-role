@@ -7,13 +7,13 @@
 
 - name: Include user setup tasks
   include_tasks: setup-user.yml
-
+  when: "exist_install_method != 'tomcat'" 
 - name: Include pre-installation tasks
   include_tasks: preinstall.yml
 
 - name: Include tasks to install exist from source
   include_tasks: install-from-source.yml
-  when: exist_install_method == "source"
+  when: exist_install_method == "source" or exist_install_method == "tomcat"
 
 - name: Include tasks to install exist from pre-packaged archive file
   include_tasks: install-archive.yml
@@ -25,6 +25,9 @@
 
 - name: Include post-installation pre-startup tasks
   include_tasks: postinstall.yml
+  when: "exist_install_method != 'tomcat'"
+
+#- name: "Include post installation pre-startup tasks tomcat"
 
 - name: Include startup exist and post-startup tasks
   include_tasks: startup.yml
