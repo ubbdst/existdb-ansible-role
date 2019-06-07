@@ -5,7 +5,6 @@
   apt:
     name: "{{ exist_debian_extra_packages }}"
     state: present
-  with_items: "{{ exist_debian_extra_packages }}"
   when: ansible_distribution == 'Debian'
 
 - name: Ensure required packages are installed (Ubuntu)
