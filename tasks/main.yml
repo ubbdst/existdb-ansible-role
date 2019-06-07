@@ -15,6 +15,11 @@
   include_tasks: install-from-source.yml
   when: exist_install_method == "source" or exist_install_method == "tomcat"
 
+- name: Include tasks to install exist from doownloadable war
+  include_tasks: install-from-war.yml
+  when: exist_install_method == "tomcat"
+
+
 - name: Include tasks to install exist from pre-packaged archive file
   include_tasks: install-archive.yml
   when: exist_install_method == "remote_archive" or exist_install_method == "local_archive"
