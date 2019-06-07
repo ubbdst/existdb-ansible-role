@@ -1,4 +1,4 @@
-- name: "Install tomcat to tomcat dir" 
+- name: "Install exist.war to tomcat dir" 
   get_url:
     url: "https://bintray.com/existdb/releases/download_file?file_path=exist-{{ exist_db_version }}.war"
     dest: "/var/lib/tomcat/webapps/exist.war"
