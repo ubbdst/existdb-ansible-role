@@ -1,7 +1,7 @@
 - name: "Install tomcat to tomcat dir" 
   get_url:
     url: "https://bintray.com/existdb/releases/download_file?file_path=exist-{{ exist_db_version }}.war"
-    dest: "/var/lib/tomcat/{{ exist_dir }}"
+    dest: "/var/lib/tomcat/{{ exist_dir }}/exist.war"
     owner: "tomcat"
     group: "tomcat"
   when: exist_install_method == "tomcat"
